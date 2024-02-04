@@ -16,7 +16,7 @@
   background-color: black;
 }
 
-.primary-text-branding-color:hover, .primary-text-branding-color:focus {
+.primary-text-branding-color:hover, .primary-text-branding-color:focus, .primary-text-branding-color:active {
   background-color: #8191a2;
 }
 
@@ -24,7 +24,7 @@
   background-color: #8191a2;
 }
 
-.secondary-text-branding-color:hover, .secondary-text-branding-color:focus {
+.secondary-text-branding-color:hover, .secondary-text-branding-color:focus, .secondary-text-branding-color:active {
   background-color: black;
 }
 
