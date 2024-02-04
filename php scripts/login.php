@@ -31,7 +31,7 @@ if ($resultado->num_rows > 0) {
     if (isset($_POST['redirect'])) {
         header("Location: ../" . $_POST['redirect']);
     } else {
-        header("Location: ../articles.php");
+        header("Location: ../index.php");
     }
 } else {
     // Acceso denegado, mostrar un mensaje de error y redireccionar a la página de inicio de sesión
