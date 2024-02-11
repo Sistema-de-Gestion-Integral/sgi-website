@@ -11,7 +11,7 @@
  Target Server Version : 100616 (10.6.16-MariaDB-0ubuntu0.22.04.1)
  File Encoding         : 65001
 
- Date: 11/02/2024 15:31:38
+ Date: 11/02/2024 15:50:27
 */
 
 SET NAMES utf8mb4;
@@ -127,8 +127,14 @@ DROP TABLE IF EXISTS `rfid_tags`;
 CREATE TABLE `rfid_tags`  (
   `id_tag` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `rfid_key_tag` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `house_tag` int UNSIGNED NOT NULL,
+  `condominium_tag` int UNSIGNED NOT NULL,
   `status_tag` smallint UNSIGNED NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_tag`) USING BTREE
+  PRIMARY KEY (`id_tag`) USING BTREE,
+  INDEX `house_tag_tags_fk`(`house_tag` ASC) USING BTREE,
+  INDEX `condominium_tag_tags_fk`(`condominium_tag` ASC) USING BTREE,
+  CONSTRAINT `condominium_tag_tags_fk` FOREIGN KEY (`condominium_tag`) REFERENCES `condominiums` (`id_condominium`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `house_tag_tags_fk` FOREIGN KEY (`house_tag`) REFERENCES `houses` (`id_house`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
