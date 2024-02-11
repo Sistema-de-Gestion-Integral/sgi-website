@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
     // Acceso denegado, mostrar un mensaje de error y redireccionar a la página de inicio de sesión
     //echo "Nombre de usuario o contraseña incorrectos"; # Mensaje de debug
     $connection->close();
-    header("Location: ../login.php?error=true");
+    header("Location: ../login.php?error=wrong-credentials");
 }
 $connection->close();
 
