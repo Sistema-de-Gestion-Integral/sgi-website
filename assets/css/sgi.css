@@ -8,6 +8,10 @@
   background-color: black;
 }
 
+.primary-background-branding-color:hover {
+  background-color: rgb(78, 78, 78);
+}
+
 .secondary-background-branding-color {
   background-color: #8191a2;
 }
