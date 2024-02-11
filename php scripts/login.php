@@ -11,20 +11,20 @@ if ($_POST['email'] == "demo_user@system.com") {
 $username = mysqli_real_escape_string($connection, $_POST['email']);
 $password = mysqli_real_escape_string($connection, $_POST['password']); //Recepción de variables que pasan por filtro anti explits SQL
 
-$sql = "SELECT * FROM `users` WHERE (`email_user` = '$username') AND (`password_user` = '$password') AND (`status_user` = 1)";
-$resultado = $connection->query($sql);
+$sql = "SELECT * FROM `administrators` WHERE (`email_administrator` = '$username') AND (`password_administrator` = '$password') AND (`status_administrator` = 1)";
+$result = $connection->query($sql);
 
 // Verificar si se encontró un usuario válido
-if ($resultado->num_rows > 0) {
+if ($result->num_rows > 0) {
     // Acceso concedido, redireccionar a la página de inicio del sitio web
-    if ($info = $resultado->fetch_object()) { //Asignación y configuración de variables de sesión en arreglo de PHP
+    if ($info = $result->fetch_object()) { //Asignación y configuración de variables de sesión en arreglo de PHP
         $_SESSION['loged_in'] = true;
-        $_SESSION['id'] = $info->id_user;
-        $_SESSION['name'] = $info->name_user;
-        $_SESSION['lastNames'] = $info->last_names_user;
-        //$_SESSION['user'] = $info->username_user;
-        $_SESSION['img'] = ($info->icon_img_user);
-        $_SESSION['email'] = $info->email_user;
+        $_SESSION['id'] = $info->id_administrator;
+        $_SESSION['name'] = $info->name_administrator;
+        $_SESSION['lastNames'] = $info->last_names_administrator;
+        //$_SESSION['user'] = $info->username_administrator;
+        $_SESSION['img'] = $info->icon_img_administrator;
+        $_SESSION['email'] = $info->email_administrator;
     }
     $connection->close();
 
