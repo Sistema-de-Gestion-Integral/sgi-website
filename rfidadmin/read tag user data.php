@@ -23,9 +23,9 @@
 		$data['mobile']="--------";
 	} else {
 		echo("El contenido de $ data es: ");
-		echo(print_r($data));
 		$msg = null;
 	}
+	echo(print_r($data));
 ?>
  
 <!DOCTYPE html>
