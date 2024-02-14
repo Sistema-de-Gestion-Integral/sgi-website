@@ -14,19 +14,20 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 Database::disconnect();
 
 if (isset($data['name'])) {
-	if (($data['name'] == null) || ($data['name'] == "")) {
-		$msg = "The ID of your Card / KeyChain is not registered !!!";
-		$data['id'] = $id;
-		$data['name'] = "--------";
-		$data['gender'] = "--------";
-		$data['email'] = "--------";
-		$data['mobile'] = "--------";
+	if (($data['name'] !== null) || ($data['name'] !== "")) {
+		$msg = null;
 	} else {
-		echo ("El contenido de $ data es: ");
+		$msg = "The ID of your Card / KeyChain is not registered !!!";
+		//echo ("El contenido de $ data es: ");
 	}
 	//echo (print_r($data));
+} else {
+	$data['id'] = $id;
+	$data['name'] = "--------";
+	$data['gender'] = "--------";
+	$data['email'] = "--------";
+	$data['mobile'] = "--------";
 }
-$msg = null;
 ?>
 
 <!DOCTYPE html>
