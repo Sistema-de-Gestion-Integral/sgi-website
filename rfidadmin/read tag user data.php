@@ -23,10 +23,10 @@ if (isset($data['name'])) {
 		$data['mobile'] = "--------";
 	} else {
 		echo ("El contenido de $ data es: ");
-		$msg = null;
 	}
 	//echo (print_r($data));
 }
+$msg = null;
 ?>
 
 <!DOCTYPE html>
