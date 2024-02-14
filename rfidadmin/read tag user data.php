@@ -22,6 +22,7 @@ if (isset($data['name'])) {
 	}
 	//echo (print_r($data));
 } else {
+	$msg = "The ID of your Card / KeyChain is not registered !!!";
 	$data['id'] = $id;
 	$data['name'] = "--------";
 	$data['gender'] = "--------";
