@@ -13,7 +13,6 @@ $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 Database::disconnect();
 
-
 if (isset($data['name'])) {
 	if (($data['name'] == null) || ($data['name'] == "")) {
 		$msg = "The ID of your Card / KeyChain is not registered !!!";
@@ -28,7 +27,6 @@ if (isset($data['name'])) {
 	}
 	//echo (print_r($data));
 }
-
 ?>
 
 <!DOCTYPE html>
