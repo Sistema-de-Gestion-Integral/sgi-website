@@ -53,7 +53,7 @@ function update_vals($data, $sensor)
     if (isset($sensor)) {
         $target = $sensor;
     }
-    $sql = "UPDATE SET `temp_sensor` = '$data[0]', `humidity_sensor` = '$data[1]' WHERE `id_sensor` = $target";
+    $sql = "UPDATE SET `temp_sensor` = $data[0], `humidity_sensor` = $data[1] WHERE `id_sensor` = $target";
     include_once "connection.php";
     $result = mysqli_query($connection, $sql) or die("Error en la consulta a la base de datos");
     $connection->close();
