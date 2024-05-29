@@ -1,4 +1,7 @@
 <?php
+if (isset($_REQUEST['humidity'])) {
+    echo ($_REQUEST['humidity'] . "%");
+}
 // Verificar si se recibieron los datos POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se recibieron las variables temperature y humidity
