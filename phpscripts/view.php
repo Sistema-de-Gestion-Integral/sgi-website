@@ -13,8 +13,8 @@ if ($result->num_rows > 0) {
         echo "<tr>";
         echo "<td>" . $row["id_sensor"] . "</td>";
         echo "<td>" . $row["name_sensor"] . "</td>";
-        echo "<td>" . $row["temp_sensor"] . "</td>";
-        echo "<td>" . $row["humidity_sensor"] . "</td>";
+        echo "<td class='container temp-container'>" . $row["temp_sensor"] . "</td>";
+        echo "<td class='container hum-container'>" . $row["humidity_sensor"] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
