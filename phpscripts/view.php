@@ -34,17 +34,12 @@
                     console.error('Error al hacer la solicitud:', xhr.statusText);
                 }
             };
-
-            // Manejar errores de conexión
             xhr.onerror = function() {
                 console.error('Error de conexión.');
             };
-
-            // Enviar la solicitud
             xhr.send();
         }
 
-        // Llamar a la función fetchData y pasar log_cars como callback
         setInterval(function() {
             fetchData();
         }, 2000); // 5000 milisegundos (5 segundos)
