@@ -27,7 +27,7 @@
                 // Verificar si la solicitud se completó correctamente
                 if (xhr.status >= 200 && xhr.status < 300) {
                     // Parsear la respuesta JSON
-                    var responseData = JSON.parse(xhr.responseText);
+                    var responseData = document.getElementById("table-div").innerHTML = xhr.responseText;
                     // Llamar al callback con los datos obtenidos
                     callback(responseData);
                 } else {
@@ -45,16 +45,9 @@
             xhr.send();
         }
 
-        // Función para registrar la cantidad de autos
-        function log_cars(data) {
-            for (var i = 0; i < data.length; i++) {
-                document.getElementsByClassName("count-container")[i].innerHTML = data[i].cars_quantity_semaphore;
-            }
-        }
-
         // Llamar a la función fetchData y pasar log_cars como callback
         setInterval(function() {
-            fetchData(log_cars);
+            fetchData();
         }, 2000); // 5000 milisegundos (5 segundos)
     </script>
 </body>
