@@ -2,7 +2,7 @@
 function sql_fetch_fields($table, $fields, $id, $custom_query)
 {
     include_once "connection.php";
-    
+
     if ($custom_query != "" && $custom_query != null) {
         $query = $custom_query;
     } else {
@@ -45,4 +45,17 @@ function sql_fetch_fields($table, $fields, $id, $custom_query)
         $connection->close();
         return null;
     }
+}
+
+function update_vals($data, $sensor)
+{
+    $target = 1;
+    if (isset($sensor)) {
+        $target = $sensor;
+    }
+    $sql = "UPDATE SET `temp_sensor` = '$data[0]', `humidity_sensor` = '$data[1]' WHERE `id_sensor` = $target";
+    include_once "connection.php";
+    $result = mysqli_query($connection, $sql) or die("Error en la consulta a la base de datos");
+    $connection->close();
+    return ($result) ? true : false;
 }
