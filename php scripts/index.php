@@ -1,22 +1,13 @@
 <?php
-if (isset($_REQUEST['humidity'])) {
-    echo ($_REQUEST['humidity'] . "%");
-}
-// Verificar si se recibieron los datos POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verificar si se recibieron las variables temperature y humidity
-    if (isset($_POST["temperature"]) && isset($_POST["humidity"])) {
-        // Obtener los valores de las variables
-        $temperature = $_POST["temperature"];
-        $humidity = $_POST["humidity"];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recoger los datos enviados en el cuerpo de la solicitud POST
+    $temperature = isset($_POST['temperature']) ? $_POST['temperature'] : 'No data';
+    $humidity = isset($_POST['humidity']) ? $_POST['humidity'] : 'No data';
 
-        // Puedes realizar cualquier acción con estos datos, como almacenarlos en una base de datos o imprimirlos
-        echo "Temperatura: " . $temperature . "°C, Humedad: " . $humidity . "%";
-    } else {
-        // Si alguna variable no se recibió, mostrar un mensaje de error
-        echo "Error: No se recibieron los datos correctamente.";
-    }
+    // Imprimir los datos (o hacer algo con ellos)
+    echo "Temperature: " . htmlspecialchars($temperature) . " °C<br>";
+    echo "Humidity: " . htmlspecialchars($humidity) . " %<br>";
 } else {
-    // Si no se recibió una solicitud POST, mostrar un mensaje de error
-    echo "Error: Método de solicitud no permitido.";
+    echo "No POST data received.";
 }
+?>
