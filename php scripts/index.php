@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recoger los datos enviados en el cuerpo de la solicitud POST
     $temperature = isset($_POST['temperature']) ? $_POST['temperature'] : 'No data';
