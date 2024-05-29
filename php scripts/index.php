@@ -1,4 +1,6 @@
 <?php
+var_dump($_POST);
+var_dump($_REQUEST);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recoger los datos enviados en el cuerpo de la solicitud POST
