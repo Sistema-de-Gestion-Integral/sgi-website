@@ -15,7 +15,7 @@
         ?>
     </div>
     <script>
-        function fetchData(callback) {
+        function fetchData() {
             // Crear un objeto XMLHttpRequest
             var xhr = new XMLHttpRequest();
 
@@ -29,7 +29,6 @@
                     // Parsear la respuesta JSON
                     var responseData = document.getElementById("table-div").innerHTML = xhr.responseText;
                     // Llamar al callback con los datos obtenidos
-                    callback(responseData);
                 } else {
                     // Manejar errores
                     console.error('Error al hacer la solicitud:', xhr.statusText);
