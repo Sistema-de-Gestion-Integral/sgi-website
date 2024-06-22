@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php'; // Asegúrate de que el autoloader de Composer esté incluido
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
@@ -7,30 +7,36 @@ use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
 
-class Chat implements MessageComponentInterface
-{
-    public function onOpen(ConnectionInterface $conn)
-    {
+class Chat implements MessageComponentInterface {
+    protected $clients;
+
+    public function __construct() {
+        $this->clients = new \SplObjectStorage;
+    }
+
+    public function onOpen(ConnectionInterface $conn) {
+        // Store the new connection to send messages to later
+        $this->clients->attach($conn);
         echo "New connection! ({$conn->resourceId})\n";
     }
 
-    public function onMessage(ConnectionInterface $from, $msg)
-    {
+    public function onMessage(ConnectionInterface $from, $msg) {
         echo "New message: $msg\n";
-        foreach ($from->WebSocket->connections as $client) {
+        foreach ($this->clients as $client) {
             if ($from !== $client) {
+                // The sender is not the receiver, send to each client connected
                 $client->send($msg);
             }
         }
     }
 
-    public function onClose(ConnectionInterface $conn)
-    {
+    public function onClose(ConnectionInterface $conn) {
+        // The connection is closed, remove it, as we can no longer send it messages
+        $this->clients->detach($conn);
         echo "Connection {$conn->resourceId} has disconnected\n";
     }
 
-    public function onError(ConnectionInterface $conn, \Exception $e)
-    {
+    public function onError(ConnectionInterface $conn, \Exception $e) {
         echo "An error has occurred: {$e->getMessage()}\n";
         $conn->close();
     }
@@ -55,6 +61,6 @@ $webServer = new IoServer(
     $webSock
 );
 
-echo "Server running on wss://localhost:8080\n";
+echo "Server running on wss://sgi.castelancarpinteyro.com:8080\n";
 
 $loop->run();
