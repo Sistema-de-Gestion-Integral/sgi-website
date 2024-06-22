@@ -14,7 +14,7 @@
     <ul id="messages"></ul>
 
     <script>
-        const ws = new WebSocket('ws://sgi.castelancarpinteyro.com:8080');
+        const ws = new WebSocket('wss://sgi.castelancarpinteyro.com:8080');
 
         ws.onopen = () => {
             console.log('Connected to the WebSocket server');
