@@ -1,7 +1,7 @@
 <?php
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-require dirname(__DIR__) . '/vendor/autoload.php';
+require 'vendor/autoload.php';
 
 class HumidityServer implements MessageComponentInterface {
     protected $clients;
