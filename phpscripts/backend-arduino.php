@@ -1,6 +1,9 @@
 <?php
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Ratchet\Server\IoServer;
+use Ratchet\Http\HttpServer;
+use Ratchet\WebSocket\WsServer;
 require 'vendor/autoload.php';
 
 class HumidityServer implements MessageComponentInterface {
