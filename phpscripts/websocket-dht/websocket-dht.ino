@@ -6,8 +6,11 @@
 const char* ssid = "OPPO de Dante";
 const char* password = "NETSHWLANSHOWPROFILE";
 
-// URL del WebSocket
-const char* websocket_server = "wss://sgi.castelancarpinteyro.com";
+// URL del WebSocket y detalles
+const char* websocket_server = "sgi.castelancarpinteyro.com";
+const uint16_t websocket_port = 443;
+const char* websocket_path = "/";
+const char* websocket_protocol = "arduino";
 
 // Pin del sensor DHT11
 #define DHTPIN 4
@@ -27,7 +30,8 @@ void setup() {
 
   dht.begin();
 
-  webSocket.beginSSL(websocket_server);
+  // Configurar WebSocket con los parámetros necesarios
+  webSocket.beginSSL(websocket_server, websocket_port, websocket_path, "", websocket_protocol);
   webSocket.onEvent(webSocketEvent);
 }
 
