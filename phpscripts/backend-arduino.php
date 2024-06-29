@@ -37,6 +37,13 @@ class HumidityServer implements MessageComponentInterface {
     }
 }
 
+$webSock = new \React\Socket\SecureServer($webSock, $loop, [
+    'local_cert' => __DIR__ . '/certificate.pem', // Ruta a tu archivo .pem
+    'local_pk' => __DIR__ . '/certificate.pem',   // Ruta a tu archivo .pem (clave privada)
+    'allow_self_signed' => true,
+    'verify_peer' => false
+]);
+
 $server = IoServer::factory(
     new HttpServer(
         new WsServer(
