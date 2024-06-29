@@ -4,7 +4,10 @@ use Ratchet\ConnectionInterface;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-require 'vendor/autoload.php';
+use React\EventLoop\Factory as LoopFactory;
+use React\Socket\Server as Reactor;
+use React\Socket\SecureServer;
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 class HumidityServer implements MessageComponentInterface {
     protected $clients;
@@ -37,20 +40,27 @@ class HumidityServer implements MessageComponentInterface {
     }
 }
 
-$webSock = new \React\Socket\SecureServer($webSock, $loop, [
-    'local_cert' => __DIR__ . '/certificate.pem', // Ruta a tu archivo .pem
-    'local_pk' => __DIR__ . '/certificate.pem',   // Ruta a tu archivo .pem (clave privada)
-    'allow_self_signed' => true,
-    'verify_peer' => false
-]);
+$loop = LoopFactory::create();
+$webSock = new Reactor('0.0.0.0:8080', $loop);
 
-$server = IoServer::factory(
+$context = [
+    'local_cert' => __DIR__ . '/certificate.pem', // Ruta a tu archivo .pem
+    'local_pk' => __DIR__ . '/private_key.pem',   // Ruta a tu archivo de clave privada .pem
+    'allow_self_signed' => true,
+    'verify_peer' => false,
+];
+
+$secure_webSock = new SecureServer($webSock, $loop, $context);
+
+$server = new IoServer(
     new HttpServer(
         new WsServer(
             new HumidityServer()
         )
     ),
-    8080
+    $secure_webSock,
+    $loop
 );
 
 $server->run();
+?>
