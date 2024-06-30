@@ -63,4 +63,3 @@ $server = new IoServer(
 );
 
 $server->run();
-?>
