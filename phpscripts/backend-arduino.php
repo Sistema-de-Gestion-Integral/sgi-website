@@ -7,6 +7,7 @@ use Ratchet\WebSocket\WsServer;
 use React\EventLoop\Factory as LoopFactory;
 use React\Socket\Server as Reactor;
 use React\Socket\SecureServer;
+
 require 'vendor/autoload.php';
 
 class HumidityServer implements MessageComponentInterface {
