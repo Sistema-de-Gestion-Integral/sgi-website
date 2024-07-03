@@ -46,7 +46,7 @@ $loop = LoopFactory::create();
 $webSock = new Reactor('0.0.0.0:8080', $loop);
 
 $context = [
-    'local_cert' => __DIR__ . '/certificate.pem', // Ruta a tu archivo .pem
+    'local_cert' => __DIR__ . '/certificlate.pem', // Ruta a tu archivo .pem
     'local_pk' => __DIR__ . '/private_key.pem',   // Ruta a tu archivo de clave privada .pem
     'allow_self_signed' => true,
     'verify_peer' => false,
